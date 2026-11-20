@@ -1,4 +1,6 @@
-# Zero · 太阳系轨道
+# Zero · 太阳系轨道（Zero-Solar-System）
+
+> 仓库名只能用 ASCII（GitHub 不支持中文仓库名），所以叫 `Zero-Solar-System`；中文标题就是「Zero · 太阳系轨道」。
 
 把 Zero 体系里「太阳系轨道怎么形成」这条推导线，做成一个可以**旋转、缩放、平移**的 3D 页面，并附上它依据的五篇原文。
 
@@ -37,6 +39,7 @@
 ## 目录
 
 ```
+index.html        给 GitHub Pages 的副本（= web/index.html）
 web/
   index.html      构建产物：单文件页面（内联 three.js、数据、CSS/JS）
   index.src.html  可编辑源码（含 DATA / THREE 两个注入标记）
@@ -52,8 +55,10 @@ LICENSE           文章 CC BY-NC-SA 4.0；代码 MIT
 ## 重新构建
 
 ```
-python3 web/gen_data.py
+python3 web/gen_data.py && cp web/index.html index.html
 ```
+
+根目录的 `index.html` 只是给 GitHub Pages 用的副本；改页面请改 `web/index.src.html`，再跑上面这条。
 
 脚本会重算页面用到的每一个数，与原文登记值逐项对照（**15/15 PASS**），再把 `index.src.html` + `three.min.js` + 数据拼成自包含的 `index.html`。页面启动时另有 10 项自检（含 WebGL、开普勒第三定律、地月终态、积分器漂移），结果写在 `#selftest` 元素里。
 
